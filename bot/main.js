@@ -1,13 +1,15 @@
 'use strict';
 
+// https://github.com/mifi/instauto
+
 const puppeteer = require('puppeteer'); // eslint-disable-line import/no-extraneous-dependencies
 
 const Instauto = require('instauto'); // eslint-disable-line import/no-unresolved
 
 const options = {
   cookiesPath: './cookies.json',
-  username: 'your-ig-username',
-  password: 'your-ig-password',
+  username: 'linkeiclub',
+  password: 'Linkei#1212',
   // Global limit that prevents follow or unfollows (total) to exceed this number over a sliding window of one hour:
   maxFollowsPerHour: 20,
   // Global limit that prevents follow or unfollows (total) to exceed this number over a sliding window of one day:
@@ -37,7 +39,7 @@ const options = {
   let browser;
 
   try {
-    browser = await puppeteer.launch({ headless: false });
+    browser = await puppeteer.launch({ headless: true, args: ['--no-sandbox'] });
 
     // Create a database where state will be loaded/saved to
     const instautoDb = await Instauto.JSONDB({
@@ -52,7 +54,7 @@ const options = {
     const instauto = await Instauto(instautoDb, browser, options);
 
     // List of usernames that we should follow the followers of, can be celebrities etc.
-    const usersToFollowFollowersOf = ['lostleblanc', 'sam_kolder'];
+    const usersToFollowFollowersOf = ['linktr.ee'];
 
     // Now go through each of these and follow a certain amount of their followers
     await instauto.followUsersFollowers({ usersToFollowFollowersOf, skipPrivate: true, enableLikeImages: true });
