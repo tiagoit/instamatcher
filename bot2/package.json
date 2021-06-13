@@ -1,5 +1,7 @@
 {
   "dependencies": {
-    "instagram-private-api": "^1.43.4"
+    "firebase-admin": "^9.5.0",
+    "instagram-private-api": "^1.43.4",
+    "sanitize-html": "^2.3.2"
   }
 }
